@@ -1,0 +1,16 @@
+{
+  "status": "done",
+  "assets": {
+    "frontend-1d5ba42b1a25ff61fb66.js": {
+      "name": "frontend-1d5ba42b1a25ff61fb66.js",
+      "path": "/Users/timothy/coding/projects/emailAuthenticationServer/frontend/static/frontend/frontend-1d5ba42b1a25ff61fb66.js",
+      "publicPath": "static/frontend/frontend-1d5ba42b1a25ff61fb66.js"
+    }
+  },
+  "chunks": {
+    "frontend": [
+      "frontend-1d5ba42b1a25ff61fb66.js"
+    ]
+  },
+  "publicPath": "static/frontend/"
+}
