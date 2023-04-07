@@ -7,11 +7,6 @@ import PrivateRoutes from './PrivateRoutes'
 import PublicRoutes from './PublicRoutes';
 
 const App = () => {
-  const cookieValue = document.cookie
-  .split("; ")
-  .find((row) => row.startsWith("thisisacookie="))
-  ?.split("=")[1];
-  console.log(cookieValue);
   return (
     <BrowserRouter>
       <Routes>

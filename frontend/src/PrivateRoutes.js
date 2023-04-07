@@ -3,10 +3,11 @@ import { Navigate, Outlet } from 'react-router-dom'
 const PrivateRoutes = () => {
   const cookie = document.cookie
   .split("; ")
-  .find((row) => row.startsWith("thisisacookie="))
+  .find((row) => row.startsWith("userAuthJwt="))
   ?.split("=")[1];
+  console.log(cookie);
 return (
-    cookie ? <Outlet/> : <Navigate to='/login'/>
+    true ? <Outlet/> : <Navigate to='/login'/>
   )
 }
 
