@@ -1,16 +1,18 @@
 {
   "status": "done",
   "assets": {
-    "frontend-1d5ba42b1a25ff61fb66.js": {
-      "name": "frontend-1d5ba42b1a25ff61fb66.js",
-      "path": "/Users/timothy/coding/projects/emailAuthenticationServer/frontend/static/frontend/frontend-1d5ba42b1a25ff61fb66.js",
-      "publicPath": "static/frontend/frontend-1d5ba42b1a25ff61fb66.js"
+    "frontend.js": {
+      "name": "frontend.js",
+      "path": "/Users/timothy/coding/projects/emailAuthenticationServer/frontend/static/frontend.js",
+      "publicPath": "static/frontend.js"
     }
   },
   "chunks": {
     "frontend": [
-      "frontend-1d5ba42b1a25ff61fb66.js"
+      "frontend.js"
     ]
   },
-  "publicPath": "static/frontend/"
+  "publicPath": "static/",
+  "error": "ModuleBuildError",
+  "message": "Module build failed (from ./node_modules/css-loader/dist/cjs.js):\nCssSyntaxError\n\n(13:17) /Users/timothy/coding/projects/emailAuthenticationServer/frontend/src/styles/login.css Missed semicolon\n\n  11 | #logincontainer {\n  12 |     background-color: rgb(39, 41, 42);\n> 13 |     color: white\n     |                 ^\n  14 |     border-radius: 35px;\n  15 |     height: 425px;\n"
 }

@@ -7,9 +7,9 @@ module.exports = {
     frontend: './frontend/src/index.js',
   },
   output: {
-    path: path.resolve('./frontend/static/frontend/'),
-    filename: '[name]-[hash].js',
-    publicPath: 'static/frontend/',
+    path: path.resolve('./frontend/static/'),
+    filename: '[name].js',
+    publicPath: 'static/',
   },
   plugins: [
     new CleanWebpackPlugin(),
