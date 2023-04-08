@@ -3,11 +3,11 @@ import { Navigate, Outlet } from 'react-router-dom'
 const PublicRoutes = () => {
   const cookie = document.cookie
   .split("; ")
-  .find((row) => row.startsWith("userAuthJwt="))
+  .find((row) => row.startsWith("userAuth="))
   ?.split("=")[1];
   console.log(cookie)
 return (
-    false ? <Navigate to='/'/> : <Outlet/>
+    cookie ? <Navigate to='/'/> : <Outlet/>
   )
 }
 

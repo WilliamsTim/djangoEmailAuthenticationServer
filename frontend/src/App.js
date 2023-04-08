@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import Unprotected from './Unprotected';
 import Login from './Login';
 import Protected from './Protected';
@@ -17,6 +17,7 @@ const App = () => {
           <Route path="/login" element={<Login />} />
         </Route>
         <Route path="/unprotected" element={<Unprotected />} />
+        <Route path="/api/verify/:auth" element={<Navigate to='/'/>}/>
       </Routes>
     </BrowserRouter>
   )

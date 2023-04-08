@@ -7,5 +7,6 @@ urlpatterns = [
   path("unprotected", views.index),
   path("api/login", views.login),
   path("api/signup", views.signUp),
-  path("api/verify", views.verify)
+  path("api/verify/<str:auth>", views.verify),
+  path('api/signout', views.signOut)
 ]

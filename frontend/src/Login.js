@@ -1,8 +1,10 @@
 import React, { useState, useRef } from 'react';
+import axios from 'axios';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { Typography } from '@mui/material';
 import './styles/login.css';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
   const [loginView, setLoginView] = useState(true);
@@ -20,6 +22,7 @@ function LoginForm({toggle}) {
   // React hooks
   const [emailError, setEmailError] = useState(false);
   const [passError, setPassError] = useState(false);
+  const navigate = useNavigate();
   const loginRef = useRef(null);
 
   // other variables
@@ -50,11 +53,14 @@ function LoginForm({toggle}) {
     e.preventDefault()
     // validate form fields before submitting
     if (validateEmail(loginRef.current[0].value) && validatePassword(loginRef.current[1].value)) {
-      console.log('validated, sending to backend')
-    } else {
-      console.log('failed validation');
+      const csrfToken = document.cookie
+      .split("; ")
+      .find((row) => row.startsWith("csrftoken="))
+      ?.split("=")[1];
+      axios.post('/api/login', {email: loginRef.current[0].value, password: loginRef.current[1].value}, {headers: {'X-CSRFToken': csrfToken}})
+        .then((val) => val.data == 'success' ? navigate('/') : alert('there was a problem logging in, please try again'))
+        .catch((e) => alert('there was a problem logging in, please try again'));
     }
-    
   }
 
   // returned component
@@ -62,8 +68,8 @@ function LoginForm({toggle}) {
     <div>
       <Typography style={{textAlign: 'center'}}>Login</Typography>
       <form ref={loginRef} onSubmit={handleSubmit}>
-      <TextField label="Email" variant="filled" className='formitem' error={emailError} helperText={emailError ? 'Please enter a valid email' : ''} sx={{ input: white }} InputLabelProps={{style: white}}/>
-      <TextField label="Password" variant="filled" className='formitem' error={passError} helperText={passError ? 'Minimum 6 characters' : ''} sx={{ input: white }} InputLabelProps={{style: white}}/>
+      <TextField label="Email" variant="filled" className='formitem' type="email" error={emailError} helperText={emailError ? 'Please enter a valid email' : ''} sx={{ input: white }} InputLabelProps={{style: white}}/>
+      <TextField label="Password" variant="filled" className='formitem' type="password" error={passError} helperText={passError ? 'Minimum 6 characters' : ''} sx={{ input: white }} InputLabelProps={{style: white}}/>
       <Button variant="contained" type='submit'>Login</Button>
       </form>
       <div className='bottomdiv'>
@@ -120,9 +126,13 @@ function SignUpForm({toggle}) {
   function handleSubmit(e) {
     e.preventDefault()
     if (validateName(signUpRef.current[0].value) && validateEmail(signUpRef.current[1].value) && validatePassword(signUpRef.current[2].value)) {
-      // send to backend
-    } else {
-      // dont
+      const csrfToken = document.cookie
+      .split("; ")
+      .find((row) => row.startsWith("csrftoken="))
+      ?.split("=")[1];
+      axios.post('/api/signup', {name: signUpRef.current[0].value, email: signUpRef.current[1].value, password: signUpRef.current[2].value}, {headers: {'X-CSRFToken': csrfToken}})
+        .then((val) => val.data == 'sent' ? alert("Please validate your email") : alert('there was a problem signing up, please try again later'))
+        .catch((e) => alert('there was a problem signing up, please try again later'));
     }
   }
   // returned component
